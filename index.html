@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b1220">
+<title>International Business Manager</title>
+<style>
+:root{--bg:#0b1220;--panel:#121c2e;--panel2:#17243a;--line:#2b3a52;--text:#edf4ff;--muted:#9eafc8;--accent:#54d6b4;--accent2:#76a7ff;--red:#ff7777;--green:#6fe0a4;--shadow:0 12px 34px #0003}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(1000px 600px at 10% -10%,#193454 0%,transparent 65%),var(--bg);color:var(--text);font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+button,input,select,textarea{font:inherit}button{cursor:pointer;border:1px solid var(--line);background:#20314b;color:var(--text);border-radius:11px;padding:10px 13px;transition:.15s}button:hover{filter:brightness(1.15);transform:translateY(-1px)}button:disabled{opacity:.45;cursor:not-allowed;transform:none}.primary{background:var(--accent);color:#05251e;border-color:transparent;font-weight:800}.secondary{background:#263b5a}.danger{background:#47262d;border-color:#77404a;color:#ffd9dd}.small{padding:6px 9px;font-size:12px;border-radius:8px}.muted{color:var(--muted)}.good{color:var(--green)}.bad{color:var(--red)}.mono{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-variant-numeric:tabular-nums}
+header{max-width:1400px;margin:auto;padding:25px 20px 12px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}.brand{display:flex;gap:12px;align-items:center}.logo{width:48px;height:48px;border-radius:15px;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#071a26;font-size:25px;font-weight:900;box-shadow:var(--shadow)}h1{font-size:clamp(23px,4vw,32px);margin:0;letter-spacing:-.7px}header p{margin:3px 0 0;color:var(--muted)}.top-actions{display:flex;gap:8px;flex-wrap:wrap}
+main{max-width:1400px;margin:auto;padding:12px 20px 40px}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:16px}.stat,.panel{background:linear-gradient(155deg,#17243aee,#111a2aee);border:1px solid var(--line);border-radius:17px;box-shadow:var(--shadow)}.stat{padding:16px}.stat .label{font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--muted)}.stat .value{font-size:clamp(20px,3vw,28px);font-weight:850;margin-top:7px;overflow-wrap:anywhere}.stat .sub{font-size:12px;color:var(--muted);margin-top:4px}
+.layout{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(320px,.75fr);gap:15px;align-items:start}.stack{display:grid;gap:15px}.panel{padding:18px;min-width:0}.panel-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px}.panel h2{font-size:17px;margin:0}.panel h3{font-size:14px;margin:0 0 10px}.pill{display:inline-flex;align-items:center;gap:5px;background:#20334d;color:#cce1ff;border:1px solid #324966;border-radius:999px;padding:4px 9px;font-size:11px;white-space:nowrap}
+.row{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.field{display:flex;flex-direction:column;gap:5px;min-width:0;flex:1}.field label{font-size:12px;color:var(--muted)}input,select,textarea{width:100%;background:#0b1423;color:var(--text);border:1px solid #34465f;border-radius:10px;padding:10px 11px;outline:none;min-width:0}input:focus,select:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px #54d6b422}.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.full{grid-column:1/-1}.divider{height:1px;background:var(--line);margin:15px 0}.quick-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}.quick-grid button{padding:10px 5px;font-weight:750}.quick-grid .plus{color:var(--green)}.quick-grid .minus{color:#ffaaaa}.help{font-size:12px;color:var(--muted);line-height:1.6}.code{background:#09111e;border:1px solid #293a50;border-radius:10px;padding:10px;overflow-wrap:anywhere;color:#aeeedb}.notice{border-radius:11px;background:#172a40;border:1px solid #2a4862;padding:10px 12px;font-size:12px;color:#bcd1ed}
+.player-list{display:grid;gap:9px}.player{border:1px solid var(--line);background:#0e1828;border-radius:13px;padding:12px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:center}.player-name{font-weight:800;overflow-wrap:anywhere}.player-meta{font-size:12px;color:var(--muted);margin-top:3px}.balance{font-size:17px;font-weight:850;text-align:right;font-variant-numeric:tabular-nums}.player-actions{display:flex;gap:5px;justify-content:flex-end;flex-wrap:wrap;margin-top:7px}.empty{padding:20px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;font-size:13px}th,td{padding:10px 8px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}th{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.7px;position:sticky;top:0;background:#121c2e}td:last-child,th:last-child{text-align:right}.table-wrap{overflow:auto;max-height:420px;border:1px solid var(--line);border-radius:11px}.table-wrap table{min-width:590px}.amount-positive{color:var(--green);font-weight:750}.amount-negative{color:#ff9999;font-weight:750}.loan-card{border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:8px;background:#0e1828}.loan-top{display:flex;justify-content:space-between;gap:10px}.loan-title{font-weight:800}.loan-detail{color:var(--muted);font-size:12px;margin:5px 0 10px}.progress{height:6px;border-radius:99px;background:#26364c;overflow:hidden}.progress span{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));width:0}
+.toast{position:fixed;bottom:18px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;z-index:20;background:#effff9;color:#07251e;padding:12px 16px;border-radius:12px;box-shadow:var(--shadow);font-weight:750;max-width:calc(100% - 30px);transition:.22s}.toast.show{opacity:1;transform:translate(-50%,0)}.section-note{font-size:12px;color:var(--muted);margin-top:8px}.footer{text-align:center;color:var(--muted);font-size:12px;padding:22px 0 8px}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:520px){header,main{padding-left:12px;padding-right:12px}.panel{padding:14px}.stats{gap:8px}.stat{padding:12px}.formgrid{grid-template-columns:1fr}.full{grid-column:auto}.quick-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.top-actions button{padding:8px 10px;font-size:12px}.player{grid-template-columns:minmax(0,1fr)}.balance{text-align:left}.player-actions{justify-content:flex-start}}
+</style>
+</head>
+<body>
+<header>
+ <div class="brand"><div class="logo">IB</div><div><h1>International Business</h1><p>Game manager · money, loans, rounds & records</p></div></div>
+ <div class="top-actions"><button id="exportBtn">↓ Export JSON</button><button id="importBtn">↑ Import JSON</button><button id="themeBtn">☼ Change look</button><input id="fileInput" type="file" accept=".json,application/json" hidden></div>
+</header>
+<main>
+ <section class="stats">
+  <div class="stat"><div class="label">Current round</div><div class="value" id="roundStat">1</div><div class="sub">Advance when a round ends</div></div>
+  <div class="stat"><div class="label">Players</div><div class="value" id="playersStat">0</div><div class="sub">Active in this game</div></div>
+  <div class="stat"><div class="label">Total player cash</div><div class="value" id="cashStat">₹0</div><div class="sub">Combined account balances</div></div>
+  <div class="stat"><div class="label">Outstanding loans</div><div class="value" id="loansStat">₹0</div><div class="sub">Unpaid loan balances</div></div>
+ </section>
+ <div class="layout">
+  <div class="stack">
+   <section class="panel">
+    <div class="panel-head"><h2>👥 Players & accounts</h2><span class="pill" id="saveStatus">● Autosave on</span></div>
+    <div class="formgrid">
+     <div class="field"><label for="playerName">Player name</label><input id="playerName" placeholder="e.g. Player 1" maxlength="50"></div>
+     <div class="field"><label for="startingCash">Starting cash (₹)</label><input id="startingCash" type="number" min="0" step="1" value="10000"></div>
+     <div class="field full"><button class="primary" id="addPlayerBtn">＋ Add player</button></div>
+    </div>
+    <div class="divider"></div><div id="playersList" class="player-list"><div class="empty">Add players to start the game.</div></div>
+   </section>
+   <section class="panel">
+    <div class="panel-head"><h2>⌨️ Transfer command</h2><span class="pill">Fast command</span></div>
+    <div class="field"><label for="commandInput">Enter a command</label><input id="commandInput" class="mono" placeholder="@Player1 10000 to @Player2" autocomplete="off"></div>
+    <div class="row" style="margin-top:9px"><button class="primary" id="runCommandBtn">Run command ↵</button><button id="commandExampleBtn">Fill example</button></div>
+    <p class="help">Format: <span class="code mono">@player1 10000 to @player2</span><br>Names are matched without case sensitivity. A transfer subtracts from the sender and adds the same amount to the receiver. Spaces in names are supported.</p>
+    <div class="notice">Example: <span class="mono">@Asha 10000 to @Ravi</span> transfers ₹10,000 from Asha to Ravi. Negative account balances are allowed only after you confirm the warning.</div>
+   </section>
+   <section class="panel">
+    <div class="panel-head"><h2>⚡ Quick transaction</h2><span class="pill">Selected account</span></div>
+    <div class="formgrid">
+     <div class="field"><label for="quickPlayer">Player account</label><select id="quickPlayer"></select></div>
+     <div class="field"><label for="customAmount">Custom amount (₹)</label><input id="customAmount" type="number" min="1" step="1" placeholder="e.g. 2500"></div>
+    </div>
+    <div class="quick-grid" id="quickButtons" style="margin-top:10px">
+     <button class="plus" data-quick="500">+ ₹500</button><button class="minus" data-quick="-500">− ₹500</button>
+     <button class="plus" data-quick="1000">+ ₹1,000</button><button class="minus" data-quick="-1000">− ₹1,000</button>
+     <button class="plus" data-quick="5000">+ ₹5,000</button><button class="minus" data-quick="-5000">− ₹5,000</button>
+     <button class="plus" data-quick="10000">+ ₹10,000</button><button class="minus" data-quick="-10000">− ₹10,000</button>
+     <button data-quick="25000" class="plus">+ ₹25,000</button><button data-quick="-25000" class="minus">− ₹25,000</button>
+     <button id="customAddBtn">+ Custom</button><button id="customSubBtn">− Custom</button>
+    </div>
+    <p class="section-note">Positive amounts add cash; negative amounts deduct cash. Every successful change is recorded in the history.</p>
+   </section>
+   <section class="panel">
+    <div class="panel-head"><h2>📜 Transaction history</h2><span class="pill" id="historyCount">0 entries</span></div>
+    <div class="row" style="margin-bottom:10px">
+     <div class="field"><label for="historySearch">Search history</label><input id="historySearch" placeholder="Player, transfer, loan…"></div>
+     <div class="field" style="max-width:170px"><label for="historyFilter">Filter</label><select id="historyFilter"><option value="all">All activity</option><option value="transfer">Transfers</option><option value="quick">Cash changes</option><option value="loan">Loans</option><option value="round">Round payments</option></select></div>
+    </div>
+    <div class="table-wrap"><table><thead><tr><th>Round / time</th><th>Transaction</th><th>Account / details</th><th>Amount</th></tr></thead><tbody id="historyBody"><tr><td colspan="4" class="muted">No transactions yet.</td></tr></tbody></table></div>
+    <div class="row" style="margin-top:10px;justify-content:space-between"><span class="help">Newest activity appears first.</span><button class="small danger" id="clearHistoryBtn">Clear history</button></div>
+   </section>
+  </div>
+  <div class="stack">
+   <section class="panel">
+    <div class="panel-head"><h2>🏦 Loans</h2><span class="pill">5% per round</span></div>
+    <div class="formgrid">
+     <div class="field"><label for="loanPlayer">Borrower</label><select id="loanPlayer"></select></div>
+     <div class="field"><label for="loanAmount">Loan amount (₹)</label><input id="loanAmount" type="number" min="1" step="1" placeholder="e.g. 20000"></div>
+     <div class="field full"><label for="loanLabel">Loan note (optional)</label><input id="loanLabel" maxlength="60" placeholder="e.g. New factory"></div>
+     <div class="field full"><button class="primary" id="giveLoanBtn">＋ Give loan</button></div>
+    </div>
+    <div class="notice" style="margin-top:12px">Game rule: each round, 5% of the loan's original amount is deducted from the borrower's account and reduces the remaining loan balance. Example: a ₹10,000 loan pays ₹500 per round; after 2 rounds, ₹9,000 remains. If the account lacks cash, it can go negative so the round still advances.</div>
+    <div class="divider"></div><div class="panel-head"><h3>Active loans</h3><span id="activeLoanCount" class="muted">0 active</span></div><div id="loansList"><div class="empty">No loans yet.</div></div>
+   </section>
+   <section class="panel">
+    <div class="panel-head"><h2>⏭️ Round control</h2><span class="pill" id="roundPill">Round 1</span></div>
+    <p class="help">Advance the game by one round. Each active loan charges its scheduled 5% payment once. This cannot be undone automatically, so export a save before advancing if you want a backup.</p>
+    <button class="primary" id="advanceRoundBtn" style="width:100%;padding:14px">Advance to next round →</button>
+    <div class="divider"></div>
+    <div class="formgrid">
+     <div class="field"><label for="countryPlayer">Player</label><select id="countryPlayer"></select></div>
+     <div class="field"><label for="countryName">Country / territory</label><input id="countryName" placeholder="e.g. Japan" maxlength="60"></div>
+     <div class="field"><label for="houseCount">Houses to add</label><input id="houseCount" type="number" min="0" step="1" value="1"></div>
+     <div class="field" style="justify-content:end"><button id="addCountryBtn">＋ Add country / houses</button></div>
+    </div>
+    <div id="countriesList" style="margin-top:12px"><div class="empty">No countries recorded yet.</div></div>
+   </section>
+   <section class="panel">
+    <div class="panel-head"><h2>🧰 Game tools</h2></div>
+    <div class="row"><button id="exportBtn2" style="flex:1">Export save</button><button id="importBtn2" style="flex:1">Import save</button></div>
+    <div class="divider"></div>
+    <div class="field"><label for="mergeMode">Import behavior</label><select id="mergeMode"><option value="replace">Replace current game with imported save</option><option value="merge">Merge players and keep both histories</option></select></div>
+    <p class="help">Merge matches players by name, adds imported cash to matching accounts, and keeps both sets of history. Always check the preview prompt before confirming.</p>
+    <button id="resetBtn" class="danger" style="width:100%;margin-top:8px">Reset entire game</button>
+    <p class="section-note">Your game autosaves in this browser. Export JSON regularly as a backup. When opened as a local HTML file, browser storage behavior can vary; the JSON save is the reliable backup.</p>
+   </section>
+  </div>
+ </div>
+ <div class="footer">International Business Manager · Single-file game companion · Saves locally on this device</div>
+</main>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script>
+(() => {
+'use strict';
+const STORAGE_KEY='internationalBusinessManager.v3';
+const $=id=>document.getElementById(id);
+const money=n=>'₹'+Number(n||0).toLocaleString('en-IN',{maximumFractionDigits:2});
+const num=v=>Number.isFinite(Number(v))?Number(v):0;
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,8);
+let toastTimer;
+function blankState(){return {version:3,round:1,players:[],loans:[],history:[],countries:[],theme:'dark',createdAt:new Date().toISOString()};}
+function cleanState(s){
+ if(!s||typeof s!=='object'||!Array.isArray(s.players))throw new Error('This JSON does not look like an International Business save.');
+ const players=s.players.map(p=>({id:String(p.id||uid()),name:String(p.name||'Unnamed player').slice(0,50),cash:num(p.cash),startingCash:num(p.startingCash??p.cash),createdAt:p.createdAt||new Date().toISOString()}));
+ const ids=new Set(); for(const p of players){if(ids.has(p.id))p.id=uid();ids.add(p.id)}
+ const validIds=new Set(players.map(p=>p.id));
+ const loans=Array.isArray(s.loans)?s.loans.filter(l=>validIds.has(String(l.playerId))).map(l=>({id:String(l.id||uid()),playerId:String(l.playerId),label:String(l.label||'Loan').slice(0,60),original:num(l.original??l.principal),remaining:Math.max(0,num(l.remaining??l.principal)),rate:0.05,createdRound:Math.max(1,Math.floor(num(l.createdRound)||1))})): [];
+ const history=Array.isArray(s.history)?s.history.slice(-5000).map(h=>({id:String(h.id||uid()),round:Math.max(1,Math.floor(num(h.round)||1)),time:String(h.time||new Date().toISOString()),type:String(h.type||'quick'),title:String(h.title||'Imported activity').slice(0,100),details:String(h.details||'').slice(0,300),playerId:h.playerId?String(h.playerId):'',amount:num(h.amount)})):[];
+ const countries=Array.isArray(s.countries)?s.countries.filter(c=>validIds.has(String(c.playerId))).map(c=>({id:String(c.id||uid()),playerId:String(c.playerId),name:String(c.name||'Unnamed country').slice(0,60),houses:Math.max(0,Math.floor(num(c.houses)))})):[];
+ return {version:3,round:Math.max(1,Math.floor(num(s.round)||1)),players,loans,history,countries,theme:s.theme==='light'?'light':'dark',createdAt:s.createdAt||new Date().toISOString()};
+}
+function loadState(){try{const raw=localStorage.getItem(STORAGE_KEY);return raw?cleanState(JSON.parse(raw)):blankState()}catch(e){return blankState()}}
+let state=loadState();
+function save(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));$('saveStatus').textContent='● Autosave on'}catch(e){$('saveStatus').textContent='! Export backup';}}
+function notify(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),2700)}
+function player(id){return state.players.find(p=>p.id===id)}
+function record(type,title,details,playerId='',amount=0){state.history.push({id:uid(),round:state.round,time:new Date().toISOString(),type,title,details,playerId,amount:num(amount)});if(state.history.length>5000)state.history=state.history.slice(-5000)}
+function getName(p){return p?p.name:'Unknown player'}
+function renderSelect(id,preferred){const sel=$(id),old=preferred||sel.value;sel.innerHTML='';if(!state.players.length){const o=document.createElement('option');o.value='';o.textContent='Add a player first';sel.append(o);sel.disabled=true;return}sel.disabled=false;state.players.forEach(p=>{const o=document.createElement('option');o.value=p.id;o.textContent=p.name;sel.append(o)});if(state.players.some(p=>p.id===old))sel.value=old}
+function escapeHTML(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function renderPlayers(){
+ const box=$('playersList');if(!state.players.length)box.innerHTML='<div class="empty">Add players to start the game.</div>';
+ else box.innerHTML=state.players.map(p=>`<div class="player"><div><div class="player-name">${escapeHTML(p.name)}</div><div class="player-meta">Starting cash ${money(p.startingCash)} · ${state.loans.filter(l=>l.playerId===p.id).length} loan(s)</div></div><div><div class="balance ${p.cash<0?'bad':'good'}">${money(p.cash)}</div><div class="player-actions"><button class="small" data-rename="${p.id}">Rename</button><button class="small danger" data-remove="${p.id}">Remove</button></div></div></div>`).join('');
+ renderSelect('quickPlayer');renderSelect('loanPlayer');renderSelect('countryPlayer');
+}
+function renderLoans(){const box=$('loansList');$('activeLoanCount').textContent=state.loans.length+' active';if(!state.loans.length){box.innerHTML='<div class="empty">No loans yet.</div>';return}
+ box.innerHTML=state.loans.map(l=>{const p=player(l.playerId),paid=Math.max(0,l.original-l.remaining),pct=l.original?Math.min(100,paid/l.original*100):100,installment=Math.min(l.remaining,l.original*.05);return `<div class="loan-card"><div class="loan-top"><div><div class="loan-title">${escapeHTML(l.label)}</div><div class="loan-detail">Borrower: ${escapeHTML(getName(p))} · Payment/round: ${money(installment)}</div></div><div style="text-align:right"><strong>${money(l.remaining)}</strong><div class="muted" style="font-size:11px">remaining</div></div></div><div class="progress"><span style="width:${pct}%"></span></div><div class="row" style="justify-content:space-between;margin-top:9px"><span class="muted" style="font-size:11px">Original ${money(l.original)} · ${pct.toFixed(0)}% paid</span><button class="small" data-repay="${l.id}">Repay principal</button></div></div>`}).join('');
+}
+function renderCountries(){const box=$('countriesList');if(!state.countries.length){box.innerHTML='<div class="empty">No countries recorded yet.</div>';return}box.innerHTML=state.countries.map(c=>`<div class="loan-card"><div class="loan-top"><div><strong>${escapeHTML(c.name)}</strong><div class="loan-detail">Owner: ${escapeHTML(getName(player(c.playerId)))}</div></div><div style="text-align:right"><strong>${c.houses}</strong><div class="muted" style="font-size:11px">house(s)</div></div></div><div class="row" style="margin-top:8px"><button class="small" data-house="${c.id}" data-delta="1">+ House</button><button class="small" data-house="${c.id}" data-delta="-1">− House</button><button class="small danger" data-countryremove="${c.id}">Remove</button></div></div>`).join('')}
+function renderHistory(){const search=$('historySearch').value.trim().toLowerCase(),filter=$('historyFilter').value;let items=state.history.slice().reverse().filter(h=>(filter==='all'||h.type===filter)&&(!search||[h.title,h.details,getName(player(h.playerId)),h.type].join(' ').toLowerCase().includes(search)));$('historyCount').textContent=items.length+' entr'+(items.length===1?'y':'ies');const body=$('historyBody');if(!items.length){body.innerHTML='<tr><td colspan="4" class="muted">No matching transactions.</td></tr>';return}
+ body.innerHTML=items.map(h=>{const d=new Date(h.time),when=Number.isNaN(d.getTime())?'—':d.toLocaleDateString(undefined,{day:'2-digit',month:'short'})+' '+d.toLocaleTimeString(undefined,{hour:'2-digit',minute:'2-digit'});let amount=h.amount?`<span class="${h.amount>0?'amount-positive':'amount-negative'}">${h.amount>0?'+':''}${money(h.amount)}</span>`:'—';return `<tr><td><strong>R${h.round}</strong><br><span class="muted">${when}</span></td><td>${escapeHTML(h.title)}</td><td>${escapeHTML(h.details||getName(player(h.playerId)))}</td><td>${amount}</td></tr>`}).join('')}
+function renderStats(){$('roundStat').textContent=state.round;$('roundPill').textContent='Round '+state.round;$('playersStat').textContent=state.players.length;$('cashStat').textContent=money(state.players.reduce((s,p)=>s+p.cash,0));$('loansStat').textContent=money(state.loans.reduce((s,l)=>s+l.remaining,0))}
+function applyTheme(){const light=state.theme==='light';document.body.style.setProperty('--bg',light?'#edf3f8':'#0b1220');document.body.style.setProperty('--panel',light?'#ffffff':'#121c2e');document.body.style.setProperty('--panel2',light?'#f5f8fc':'#17243a');document.body.style.setProperty('--line',light?'#cdd8e5':'#2b3a52');document.body.style.setProperty('--text',light?'#182536':'#edf4ff');document.body.style.setProperty('--muted',light?'#5d6e82':'#9eafc8');document.body.style.background=light?'radial-gradient(1000px 600px at 10% -10%,#d1e5f7 0%,transparent 65%),var(--bg)':'radial-gradient(1000px 600px at 10% -10%,#193454 0%,transparent 65%),var(--bg)';document.querySelectorAll('.stat,.panel').forEach(el=>el.style.background=light?'linear-gradient(155deg,#ffffff,#f7faff)':'linear-gradient(155deg,#17243aee,#111a2aee)');document.querySelectorAll('.player,.loan-card').forEach(el=>el.style.background=light?'#f7faff':'#0e1828');document.querySelectorAll('input,select,textarea').forEach(el=>{el.style.background=light?'#fff':'#0b1423'});document.querySelectorAll('.code').forEach(el=>{el.style.background=light?'#eaf4f7':'#09111e'});document.querySelectorAll('th').forEach(el=>el.style.background=light?'#f3f7fc':'#121c2e');}
+function render(){renderPlayers();renderLoans();renderCountries();renderHistory();renderStats();applyTheme();save()}
+function requirePlayer(id){const p=player(id);if(!p){notify('Add or select a player first.');return null}return p}
+function cashChange(p,amount,title='Cash adjustment',details='Manual cash change',type='quick'){if(!Number.isFinite(amount)||amount===0){notify('Enter a non-zero amount.');return false}if(p.cash+amount<0&&!confirm(`${p.name} would have a negative balance (${money(p.cash+amount)}). Continue?`))return false;p.cash+=amount;record(type,title,`${p.name}: ${details}`,p.id,amount);render();notify(`${p.name}: ${amount>0?'+':''}${money(amount)}`);return true}
+function transfer(from,to,amount){if(!from||!to){notify('Could not find both players.');return}if(from.id===to.id){notify('Choose two different players.');return}if(!(amount>0)||!Number.isFinite(amount)){notify('Transfer amount must be positive.');return}if(from.cash<amount&&!confirm(`${from.name} has ${money(from.cash)} but wants to send ${money(amount)}. This will make the balance negative. Continue?`))return;from.cash-=amount;to.cash+=amount;record('transfer','Money transfer',`${from.name} → ${to.name}`,from.id,-amount);record('transfer','Money received',`${to.name} ← ${from.name}`,to.id,amount);render();notify(`${money(amount)} transferred to ${to.name}.`)}
+function parseCommand(raw){const m=raw.trim().match(/^@(.+?)\s+([0-9][0-9,]*(?:\.\d{1,2})?)\s+to\s+@(.+?)\s*$/i);if(!m){notify('Format: @player1 10000 to @player2');return}const fromName=m[1].trim().replace(/^["']|["']$/g,''),amount=Number(m[2].replace(/,/g,'')),toName=m[3].trim().replace(/^["']|["']$/g,'');const find=n=>state.players.find(p=>p.name.toLowerCase()===n.toLowerCase());const from=find(fromName),to=find(toName);if(!from||!to){const missing=!from?fromName:toName;notify(`Player “${missing}” not found. Check the exact name.`);return}transfer(from,to,amount)}
+function exportSave(){const blob=new Blob([JSON.stringify({...state,exportedAt:new Date().toISOString()},null,2)],{type:'application/json'});const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=`international-business-round-${state.round}.json`;document.body.append(a);a.click();a.remove();URL.revokeObjectURL(url);notify('JSON save exported.')}
+function mergeState(incoming){const oldRound=state.round;incoming.players.forEach(ip=>{const found=state.players.find(p=>p.name.toLowerCase()===ip.name.toLowerCase());if(found){found.cash+=ip.cash;found.startingCash+=ip.startingCash;const idMap=new Map();incoming.loans.filter(l=>l.playerId===ip.id).forEach(l=>state.loans.push({...l,id:uid(),playerId:found.id}));incoming.countries.filter(c=>c.playerId===ip.id).forEach(c=>{const existing=state.countries.find(x=>x.playerId===found.id&&x.name.toLowerCase()===c.name.toLowerCase());if(existing)existing.houses+=c.houses;else state.countries.push({...c,id:uid(),playerId:found.id})})}else{const np={...ip,id:uid()};state.players.push(np);incoming.loans.filter(l=>l.playerId===ip.id).forEach(l=>state.loans.push({...l,id:uid(),playerId:np.id}));incoming.countries.filter(c=>c.playerId===ip.id).forEach(c=>state.countries.push({...c,id:uid(),playerId:np.id}))}});incoming.history.forEach(h=>state.history.push({...h,id:uid(),round:Math.max(oldRound,h.round)}));state.round=Math.max(state.round,incoming.round);state.history=state.history.slice(-5000)}
+async function importSave(file){if(!file)return;try{const text=await file.text();const parsed=JSON.parse(text);const incoming=cleanState(parsed);if($('mergeMode').value==='merge'){if(!confirm(`Merge ${incoming.players.length} player(s), ${incoming.history.length} history entry/entries, and ${incoming.loans.length} loan(s) into the current game? Matching players will have their cash added.`))return;mergeState(incoming)}else{if(!confirm(`Replace the current game with this save? Current game: ${state.players.length} players, round ${state.round}. Imported game: ${incoming.players.length} players, round ${incoming.round}. Export a backup first if needed.`))return;state=incoming}render();notify('Save imported successfully.')}catch(e){alert('Import failed: '+(e.message||'Invalid JSON file')+'\nYour current game has not been changed.')}finally{$('fileInput').value=''}}
+function openImport(){$('fileInput').click()}
+$('addPlayerBtn').addEventListener('click',()=>{const name=$('playerName').value.trim(),cash=num($('startingCash').value);if(!name){notify('Enter a player name.');return}if(state.players.some(p=>p.name.toLowerCase()===name.toLowerCase())){notify('A player with that name already exists.');return}if(cash<0||!Number.isFinite(cash)){notify('Starting cash cannot be negative.');return}const p={id:uid(),name,cash,startingCash:cash,createdAt:new Date().toISOString()};state.players.push(p);record('quick','Player created',`${name} started with ${money(cash)}`,p.id,cash);$('playerName').value='';render();$('quickPlayer').value=p.id;$('loanPlayer').value=p.id;$('countryPlayer').value=p.id;notify(`${name} added.`)});
+$('playersList').addEventListener('click',e=>{const r=e.target.closest('[data-rename]'),d=e.target.closest('[data-remove]');if(r){const p=player(r.dataset.rename);if(!p)return;const n=prompt('New player name:',p.name);if(n===null)return;const name=n.trim();if(!name)return notify('Name cannot be empty.');if(state.players.some(x=>x.id!==p.id&&x.name.toLowerCase()===name.toLowerCase()))return notify('That player name is already in use.');const old=p.name;p.name=name;record('quick','Player renamed',`${old} → ${name}`,p.id,0);render()}if(d){const p=player(d.dataset.remove);if(!p)return;if(!confirm(`Remove ${p.name}? Their transaction history stays, but their loans and countries will be removed.`))return;state.loans=state.loans.filter(l=>l.playerId!==p.id);state.countries=state.countries.filter(c=>c.playerId!==p.id);state.players=state.players.filter(x=>x.id!==p.id);record('quick','Player removed',p.name,p.id,0);render();notify('Player removed.')}});
+$('runCommandBtn').addEventListener('click',()=>parseCommand($('commandInput').value));$('commandInput').addEventListener('keydown',e=>{if(e.key==='Enter')parseCommand(e.currentTarget.value)});$('commandExampleBtn').addEventListener('click',()=>{if(state.players.length>=2)$('commandInput').value=`@${state.players[0].name} 10000 to @${state.players[1].name}`;else $('commandInput').value='@Player1 10000 to @Player2';$('commandInput').focus()});
+$('quickButtons').addEventListener('click',e=>{const b=e.target.closest('[data-quick]');if(!b)return;const p=requirePlayer($('quickPlayer').value);if(p)cashChange(p,num(b.dataset.quick),'Quick transaction',`${num(b.dataset.quick)>0?'Added':'Deducted'} ${money(Math.abs(num(b.dataset.quick)))}`,'quick')});
+function customChange(sign){const p=requirePlayer($('quickPlayer').value),amount=num($('customAmount').value);if(!p)return;if(amount<=0)return notify('Enter a custom amount greater than zero.');cashChange(p,sign*amount,'Custom cash transaction',`${sign>0?'Added':'Deducted'} ${money(amount)}`,'quick');$('customAmount').value=''}
+$('customAddBtn').addEventListener('click',()=>customChange(1));$('customSubBtn').addEventListener('click',()=>customChange(-1));
+$('giveLoanBtn').addEventListener('click',()=>{const p=requirePlayer($('loanPlayer').value),amount=num($('loanAmount').value);if(!p)return;if(amount<=0||!Number.isFinite(amount))return notify('Enter a loan amount greater than zero.');const label=$('loanLabel').value.trim()||'Loan';const l={id:uid(),playerId:p.id,label,original:amount,remaining:amount,rate:.05,createdRound:state.round};state.loans.push(l);p.cash+=amount;record('loan','Loan issued',`${p.name} received ${money(amount)} · ${label}`,p.id,amount);$('loanAmount').value='';$('loanLabel').value='';render();notify(`Loan of ${money(amount)} issued to ${p.name}.`)});
+$('loansList').addEventListener('click',e=>{const b=e.target.closest('[data-repay]');if(!b)return;const l=state.loans.find(x=>x.id===b.dataset.repay);if(!l)return;const p=player(l.playerId);if(!p)return;const raw=prompt(`Repay principal for ${l.label}.\nRemaining: ${money(l.remaining)}\nEnter amount to repay:`,String(Math.min(l.remaining,p.cash)));if(raw===null)return;const amount=Number(raw.replace(/,/g,''));if(!Number.isFinite(amount)||amount<=0)return notify('Enter a valid amount.');if(amount>l.remaining+0.00001)return notify('Cannot repay more than the remaining loan.');if(p.cash<amount&&!confirm(`${p.name} has ${money(p.cash)} cash. Repayment will make the balance negative. Continue?`))return;p.cash-=amount;l.remaining=Math.max(0,l.remaining-amount);record('loan','Principal repayment',`${p.name} repaid ${money(amount)} · ${l.label}`,p.id,-amount);if(l.remaining<=0.000001)state.loans=state.loans.filter(x=>x.id!==l.id);render();notify('Loan repayment recorded.')});
+$('advanceRoundBtn').addEventListener('click',()=>{if(!confirm(`Advance from round ${state.round} to round ${state.round+1} and apply each loan's 5% installment?`))return;state.round++;let total=0,processed=0;const keep=[];for(const l of state.loans){const p=player(l.playerId);if(!p||l.remaining<=0)continue;const pay=Math.min(l.remaining,l.original*.05);if(pay<=0)continue;p.cash-=pay;l.remaining=Math.max(0,l.remaining-pay);total+=pay;processed++;record('round','Loan installment',`${p.name}: ${l.label} · 5% installment`,p.id,-pay);if(l.remaining>0.000001)keep.push(l)}state.loans=keep;record('round','Round advanced',`Started round ${state.round}; ${processed} loan payment(s), total ${money(total)}`,'',0);render();notify(`Round ${state.round} started. ${money(total)} collected across ${processed} loan(s).`)});
+$('addCountryBtn').addEventListener('click',()=>{const p=requirePlayer($('countryPlayer').value),name=$('countryName').value.trim(),houses=Math.floor(num($('houseCount').value));if(!p)return;if(!name)return notify('Enter a country or territory name.');if(houses<0)return notify('House count cannot be negative.');const found=state.countries.find(c=>c.playerId===p.id&&c.name.toLowerCase()===name.toLowerCase());if(found)found.houses+=houses;else state.countries.push({id:uid(),playerId:p.id,name,houses});record('quick','Country updated',`${p.name}: ${name}, houses +${houses}`,p.id,0);$('countryName').value='';render();notify('Country record updated.')});
+$('countriesList').addEventListener('click',e=>{const h=e.target.closest('[data-house]'),r=e.target.closest('[data-countryremove]');if(h){const c=state.countries.find(x=>x.id===h.dataset.house);if(!c)return;const delta=Number(h.dataset.delta);if(delta<0&&c.houses<=0)return notify('House count is already zero.');c.houses+=delta;record('quick','House count changed',`${getName(player(c.playerId))}: ${c.name} (${delta>0?'+1':'−1'})`,c.playerId,0);render()}if(r){const c=state.countries.find(x=>x.id===r.dataset.countryremove);if(!c)return;if(confirm(`Remove ${c.name} from the country list?`)){state.countries=state.countries.filter(x=>x.id!==c.id);render();notify('Country removed.')}}});
+$('historySearch').addEventListener('input',renderHistory);$('historyFilter').addEventListener('change',renderHistory);$('clearHistoryBtn').addEventListener('click',()=>{if(confirm('Clear the entire transaction history? Player balances, loans, and countries will remain unchanged.')){state.history=[];render();notify('History cleared.')}});
+$('exportBtn').addEventListener('click',exportSave);$('exportBtn2').addEventListener('click',exportSave);$('importBtn').addEventListener('click',openImport);$('importBtn2').addEventListener('click',openImport);$('fileInput').addEventListener('change',e=>importSave(e.target.files&&e.target.files[0]));$('mergeMode').addEventListener('change',()=>notify('Import mode: '+$('mergeMode').selectedOptions[0].textContent));
+$('themeBtn').addEventListener('click',()=>{state.theme=state.theme==='dark'?'light':'dark';render();notify('Appearance changed.')});
+$('resetBtn').addEventListener('click',()=>{if(!confirm('Reset the whole game? This deletes all current players, balances, loans, countries, and history from this browser. Export a save first if you might need it.'))return;state=blankState();render();notify('New game ready.')});
+render();
+})();
+</script>
+</body>
+</html>
